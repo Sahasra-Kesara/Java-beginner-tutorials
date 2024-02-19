@@ -1,0 +1,87 @@
+-------------------------------------------------------------------------------------------------------------------------------------------
+								Driver.java
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+public class driver {
+    public static void main(String[] args) {
+
+        /*PaperBag paperBag = new PaperBag();
+        paperBag.setLength(10.0);
+        paperBag.setWidth(10.0);
+        System.out.println(paperBag.getPrice());*/
+
+        PlasticBag plasticBag = new PlasticBag();
+        plasticBag.setLength(40.0);
+        plasticBag.setWidth(10.0);
+        plasticBag.setTax(0.2);
+        System.out.println(plasticBag.getPrice());
+        System.out.println(plasticBag.getTax());
+    }
+}
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+								Bag.java
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+public abstract class Bag {
+    private double Length;
+    private double width;
+    protected double price;
+
+    public double getLength() {
+        return Length;
+    }
+    public void setLength(double length) {
+        this.Length = length;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+    public abstract double getPrice();
+}
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+								PaperBag.java
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+public class PaperBag extends Bag {
+    public double getPrice() {
+        double area = getLength() * getWidth();
+        if (area > 300.0) {price = 0.2;}
+        else {price = 0.15;}
+        return price;
+
+    }
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+								PlasticBag.java
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+public  class PlasticBag extends Bag {
+    private double tax;
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
+    public double getTax() {
+        return tax;
+    }
+    public double getPrice() {
+        double area = getLength() * getWidth();
+        if (area > 250) {price = 0.3;}
+        else {price = 0.2;}
+        return price + tax;
+    }
+}

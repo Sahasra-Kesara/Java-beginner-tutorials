@@ -1,0 +1,57 @@
+----------------------------------------------------------------------------------------------------------------------------------------------
+                                                             Driver.java
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+public class driver {
+    public static void main (String[] args){
+        String[] dish = {"Sandwich", "Coffee", "French fries", "Salad"};
+        double[] cost = {6.5, 3.2, 4.8, 3.5};
+        Bill myBill = new Bill();
+        myBill.addOrder("Sandwich", 2, dish, cost);
+        myBill.addOrder("Coffee", 2, dish, cost);
+        myBill.addOrder("French Fries", 1, dish, cost);
+        myBill.addOrder("Salad", 1, dish, cost);
+        myBill.getOrder();
+        System.out.println(myBill.getTotal());
+    }
+}
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+                                                             Bill.java
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+import java.util.ArrayList;
+
+public class Bill {
+    private ArrayList<String> orderedFood;
+    private ArrayList<Integer> orderedQuantity;
+    public Bill() {
+        orderedFood = new ArrayList<String>();
+        orderedQuantity = new ArrayList<Integer>();
+    }
+    private double totalCost;
+    public double getTotal() {
+        return totalCost;
+    }
+    public void addOrder(String meal, int quantity, String[] dish, double[] cost) {
+        orderedFood.add(meal);
+        orderedQuantity.add(quantity);
+        for (int i = 0; i < dish.length; i++) {
+            if (meal.equals(dish[i])) {
+                totalCost += quantity * cost[i];
+            }
+        }
+    }
+        public void getOrder() {
+            for (int i = 0; i < orderedFood.size(); i++) {
+                System.out.println(orderedFood.get(i) + " " + orderedQuantity.get(i));
+            }
+        }
+
+}

@@ -1,0 +1,83 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------
+								Driver.java
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public class Driver {
+    public static void main(String[] args) {
+        SolarToyCar myCar = new SolarToyCar();
+        System.out.println(myCar.getBattery());
+        myCar.turn(Direction.RIGHT, 45);
+        System.out.println(myCar.getBattery());
+        myCar.forward(30.0);
+        System.out.println(myCar.getBattery());
+        myCar.turnWithSolarEnergy(20.0);
+        System.out.println(myCar.getBattery());
+        myCar.turnWithSolarEnergy(100.0);
+        myCar.chargeBattery();
+        System.out.println(myCar.getBattery());
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+								Direction.java
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public enum Direction {
+    LEFT,
+    RIGHT
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+								SolarPanal.java
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public interface SolarPanel {
+    public static int numPanels = 2;
+    public void chargeBattery();
+    public void moveWithSolarEnergy(double distance);
+    public void turnWithSolarEnergy(double angle);
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+								SolarToyCar.java
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public class SolarToyCar extends ToyCar implements SolarPanel {
+    public void chargeBattery() {
+            System.out.println("Charge battery with " + numPanels + " solar panels");
+            this.batteryLevel = fullBattery;
+    }
+    public void moveWithSolarEnergy(double distance) {
+            System.out.println("Move for " + distance + " meters " + "without using battery power");
+    }
+    public void turnWithSolarEnergy(double angle) {
+            System.out.println("Turn for " + angle + " degrees " + "without using battery power");
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+								ToyCar.java
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public class ToyCar{
+    protected double batteryLevel;
+    protected final double fullBattery = 1000;
+    public ToyCar() {
+        batteryLevel = fullBattery;
+    }
+    public void forward(double distance) {
+        System.out.println("Go forward for " + distance + " meters");
+        batteryLevel -= distance;
+    }
+    public void turn(Direction dir, double angle) {
+        System.out.println("Turn " + dir + " by" + angle + " degrees");
+        batteryLevel -= angle;
+    }
+    public double getBattery(){
+        return batteryLevel;
+    }
+    public void chargeBattery(){
+        System.out.println("Charge battery from wall socket");
+        batteryLevel = fullBattery;
+    }
+}

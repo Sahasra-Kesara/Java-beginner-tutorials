@@ -1,0 +1,215 @@
+--------------------------------------------------------------------------------------------------------
+Driver.java
+--------------------------------------------------------------------------------------------------------
+
+
+public class driver {
+    public static void main(String[] args) {
+
+        Student andy = new Student("Andy");
+
+        andy.add("Mathematics", 'C');
+        andy.add("English", 'A');
+        andy.add("History", 'B');
+        andy.add("Geography", 'D');
+
+        System.out.println(andy.getName() + " has a GPA of " + andy.getGPA());
+        System.out.println("It is obtained " + " from these subjects");
+
+        for (String str: andy.getSubjects() ) {
+            System.out.println(str);
+        }
+    }
+}
+
+--------------------------------------------------------------------------------------------------------
+Student.java
+--------------------------------------------------------------------------------------------------------
+
+import java.util.ArrayList;
+public class Student {
+    private String name;
+    private ArrayList<String> subject;
+    private ArrayList<Character> grade;
+    public Student (String n) {
+        name = n;
+        subject = new ArrayList<String>();
+        grade = new ArrayList<Character>();
+    }
+    public String getName(){
+        return name;
+    }
+    public void add(String s, Character g) {
+        subject.add(s);
+        grade.add(g);
+    }
+    public ArrayList<String> getSubjects(){
+        return subject;
+    }
+    public double getGPA(){
+        double totalPoint = 0.0;
+        for (char g : grade) {
+            switch (g) {
+                case 'A':
+                    totalPoint += 4.0;
+                    break;
+                case 'B':
+                    totalPoint += 3.0;
+                    break;
+                case 'C':
+                    totalPoint += 2.0;
+                    break;
+                case 'D':
+                    totalPoint += 1.0;
+                    break;
+                case 'F':
+                    totalPoint += 0.0;
+                    break;
+            }
+        }
+        return totalPoint / grade.size();
+    }
+}
+
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+
+
+
+
+    def test_DecimalValues(self):
+        with self.assestRaises(Exeption):
+            self.calculator.addNumbers('5.66,3.44')  # Test with a decimal value
+
+    def test_NonNumeric(self):
+        with self.assestRaises(Exeption):
+            self.calculator.addNumbers('5,6,e')  # Test with a non-numeric value
+        
+
+    def test_MoreThanThreeIntegers(self):
+        with self.assestRaises(Exeption):
+            self.calculator.addNumbers('2,3,4,5')  # Test with more than three numbers
+        
+
+    def test_MoreThan100(self):
+        with self.assestRaises(Exeption):
+            self.calculator.addNumbers('110,20,111')  # Test with numbers greater than 100
+if __name__ == '__main__':
+    unittest.main()
+
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+#This is the Phython Unit Testing Module
+import unittest
+
+# This is the class we want to test. So, we need to import it
+import Calculator_steps as CalculatorClass
+
+class TestCalculator(unittest.TestCase):
+    """
+    The basic class that inherits unittest.TestCase
+    """
+    def __init__(self):
+        self.calculator = CalculatorClass.Calculator()  # instantiate the Calculator_enhanced Class
+    
+    """
+    The test cases should start with "test_" prefix
+    """
+    def test_DecimalValues(self):
+        with self.assestRaises(penalty regime: 2, 4, ... %):
+            self.calculator.addNumbers('5.66,3.44')  # Test with a decimal value
+
+    def test_NonNumeric(self):
+        with self.assestRaises(penalty regime: 2, 4, ... %):
+            self.calculator.addNumbers('5,6,e')  # Test with a non-numeric value
+        
+
+    def test_MoreThanThreeIntegers(self):
+        with self.assestRaises(penalty regime: 2, 4, ... %):
+            self.calculator.addNumbers('2,3,4,5')  # Test with more than three numbers
+        
+
+    def test_MoreThan100(self):
+        with self.assestRaises(penalty regime: 2, 4, ... %):
+            self.calculator.addNumbers('110,20,111')  # Test with numbers greater than 100
+if __name__ == '__main__':
+    unittest.main()
+
+
+
+---------------------------------------------------------------------------------------------------------
+
+#This is the Phython Unit Testing Module
+import unittest
+
+# This is the class we want to test. So, we need to import it
+import Calculator_steps as CalculatorClass
+
+class TestCalculator(unittest.TestCase):
+    """
+    The basic class that inherits unittest.TestCase
+    """
+    def __init__(self):
+        self.calculator = CalculatorClass.Calculator()  # instantiate the Calculator_enhanced Class
+    
+    """
+    The test cases should start with "test_" prefix
+    """
+    def test_DecimalValues(self):
+        with self.assestRaises(result, "Calculator should not accept decimal values"):
+            self.calculator.addNumbers('5.66,3.44')  # Test with a decimal value
+
+    def test_NonNumeric(self):
+        with self.assestRaises(result, "Calculator should not accept non-numeric values"):
+            self.calculator.addNumbers('5,6,e')  # Test with a non-numeric value
+        
+
+    def test_MoreThanThreeIntegers(self):
+        with self.assestRaises(result, "Calculator should not accept more than 3 numbers"):
+            self.calculator.addNumbers('2,3,4,5')  # Test with more than three numbers
+        
+
+    def test_MoreThan100(self):
+        with self.assestRaises(result, "Calculator should not accept numbers greater than 100"):
+            self.calculator.addNumbers('110,20,111')  # Test with numbers greater than 100
+
+if __name__ == '__main__':
+    unittest.main()
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

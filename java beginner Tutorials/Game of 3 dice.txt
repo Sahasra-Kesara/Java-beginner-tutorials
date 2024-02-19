@@ -1,0 +1,85 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                         Driver.java
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class driver {
+    public static void main(String[] args) {
+
+        int numDice = 3, trials = 5;
+        int playerPoints = 0, computerPoints = 0;
+
+        Random choice = new Random();
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Choose your target:");
+
+        int playerTarget = scan.nextInt();
+
+        Game player = new Game(numDice, trials);
+        playerPoints = player.play("Player", playerTarget);
+
+        int computerTarget = choice.nextInt(6) + 1;
+
+        System.out.println("Computer's target is " + computerTarget);
+        Game computer = new Game(numDice, trials);
+        computerPoints = computer.play("Computer", computerTarget);
+
+        if (playerPoints > computerPoints) {
+            System.out.println("Computer Wins");
+        }
+        else if (playerPoints < computerPoints) {
+            System.out.println("Computer Wins");
+        }
+        else
+            System.out.println("Draw");
+        scan.close();
+    }
+}
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                         Game.java
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class Game {
+    int numDice, trials;
+    Random rand;
+    Scanner scan;
+    public Game(int numDice, int trials) {
+        this.numDice = numDice;
+        this.trials = trials;
+
+        rand = new Random();
+        scan = new Scanner(System.in);
+    }
+    public int play(String who, int target) {
+        int[] dice = new int[numDice];
+        int points = 0;
+        for (int i = 0; i < trials; i++) {
+            for (int j = 0; j < numDice; j++) {
+                dice[j] = rand.nextInt(6) + 1;
+            }
+            System.out.println("Press Enter:");
+            scan.nextLine();
+            for (int j : dice) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+            for (int j = 0; j < numDice; j++) {
+                if (dice[j] == target)
+                    points++;
+            }
+        }
+        System.out.println(who + " got" + points + " points");
+        return points;
+
+    }
+}

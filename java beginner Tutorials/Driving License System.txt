@@ -1,0 +1,84 @@
+-------------------------------------------------------------------------------------------------------------------------------------------
+								GenericDriver.java
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+public class GenericDriver {
+    private String name;
+    private int points;
+    private boolean isProvisional;
+    protected String medicalReport;
+
+    public GenericDriver(String name, boolean isProvisional) {
+        this.name = name;
+        points = 15;
+        this.isProvisional = isProvisional;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getPoints() {
+        return points;
+    }
+    public boolean getIsProvisional() {
+        return isProvisional;
+    }
+    public String getMedicalReport() {
+        return medicalReport;
+    }
+    public void setMedicalReport() {
+        medicalReport = "Approved to drive private car";
+    }
+    public void deduct(int p) {
+        if (points >= p) {points -= p;}
+        else {points = 0;}
+        if (points == 0) {
+            System.out.println ("License Suspended");
+        }
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+								CommercialDriver.java
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+public class CommercialDriver extends GenericDriver {
+    private String hazardousMaterialsType;
+    private String carType;
+    public CommercialDriver(String name, boolean isProvisional, String materialType, String car) {
+        super(name, isProvisional);
+        hazardousMaterialsType = materialType;
+        carType = car;
+    }
+    public String getMaterialsType() {
+        return hazardousMaterialsType;
+    }
+    public void SetMedicalReport() {
+        medicalReport = "Approved to drive " + carType;
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+								DriverProgram.java
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+public class DriverProgram {
+    public static void main (String[] args) {
+        GenericDriver tom = new GenericDriver("Tom", true);
+        tom.deduct(3);
+        tom.setMedicalReport();
+        CommercialDriver lily = new CommercialDriver("Lily", false, "inflammable", "truck");
+        lily.deduct(5);
+        lily.setMedicalReport();
+
+        GenericDriver[] driverArray = new GenericDriver[2];
+        driverArray[0] = tom;
+        driverArray[1] = lily;
+        for (int i = 0; i < driverArray.length; i++) {
+            System.out.println(driverArray[i].getName() + " s license is provisional: " + driverArray[i].getIsProvisional());
+            System.out.println(driverArray[i].getName() + " has" + driverArray[i].getPoints() + " points");
+            System.out.println(driverArray[i].getMedicalReport());
+        }
+        System.out.println(lily.getMaterialsType());
+    }
+}
+

@@ -1,0 +1,132 @@
+-------------------------------------------------------------------------------------------------------------------------------------------
+								Driver.java
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.ArrayList;
+public class driver {
+    public static void main(String[] args) {
+        ArrayList<GiftBox> boxes = new ArrayList<GiftBox>();
+        double[] biscuitsWeights1 = {200.0, 100.0};
+        double[] chocolateWeights1 = {200.0, 100.0};
+        String[] chocolateFlavors1 = {"mint", "orange"};
+        boxes.add(new GiftBox(biscuitsWeights1, chocolateWeights1, chocolateFlavors1));
+
+        double[] biscuitsWeights2 = {300.0, 100.0, 100.0};
+        double[] chocolateWeights2 = {300.0, 100.0, 100.0};
+        String[] chocolateFlavors2 = {"mint", "orange", "coffee"};
+        boxes.add(new GiftBox(biscuitsWeights2, chocolateWeights2, chocolateFlavors2));
+
+        for (GiftBox box : boxes) {
+            if (box.getWeight() > 1000.0) {
+                System.out.println("The box with " + box.getNumBiscuits() + " biscuits and" + box.getnumChocolate() + " chocolates is overweight");
+                System.out.println("The biscuit weights are:");
+                box.showBiscuitsWeights();
+                System.out.println("The biscuit weights are:");
+                box.showChocolateWeights();
+                System.out.println("The biscuit weights are:");
+                box.showChocolateFlavors();
+                System.out.println();
+            }
+        }
+
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+								Chocolate.java
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.ArrayList;
+public class driver {
+    public static void main(String[] args) {
+        ArrayList<GiftBox> boxes = new ArrayList<GiftBox>();
+        double[] biscuitsWeights1 = {200.0, 100.0};
+        double[] chocolateWeights1 = {200.0, 100.0};
+        String[] chocolateFlavors1 = {"mint", "orange"};
+        boxes.add(new GiftBox(biscuitsWeights1, chocolateWeights1, chocolateFlavors1));
+
+        double[] biscuitsWeights2 = {300.0, 100.0, 100.0};
+        double[] chocolateWeights2 = {300.0, 100.0, 100.0};
+        String[] chocolateFlavors2 = {"mint", "orange", "coffee"};
+        boxes.add(new GiftBox(biscuitsWeights2, chocolateWeights2, chocolateFlavors2));
+
+        for (GiftBox box : boxes) {
+            if (box.getWeight() > 1000.0) {
+                System.out.println("The box with " + box.getNumBiscuits() + " biscuits and" + box.getnumChocolate() + " chocolates is overweight");
+                System.out.println("The biscuit weights are:");
+                box.showBiscuitsWeights();
+                System.out.println("The biscuit weights are:");
+                box.showChocolateWeights();
+                System.out.println("The biscuit weights are:");
+                box.showChocolateFlavors();
+                System.out.println();
+            }
+        }
+
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+								Biscuit.java
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+public class Biscuits {
+    private double weight;
+    public Biscuits(double weight) {
+        this.weight = weight;
+    }
+    public double getWeight() {
+        return weight;
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+								GiftBox.java
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.ArrayList;
+
+public class GiftBox {
+    private ArrayList<Biscuits> biscuitsSet;
+    private ArrayList<Chocolate> chocolateSet;
+    private double weight;
+    public GiftBox(double[] biscuitsWeights, double[] chocolateWeight, String[] chocolateFlavors) {
+        biscuitsSet = new ArrayList<Biscuits>();
+        chocolateSet = new ArrayList<Chocolate>();
+        for (int i = 0; i < biscuitsWeights.length; i++) {
+            Biscuits pack = new Biscuits(biscuitsWeights[i]);
+            biscuitsSet.add(pack);
+            weight += pack.getWeight();
+        }
+        for (int i = 0; i < chocolateWeights.length; i++) {
+            Biscuits pack = new Chocolate(chocolateWeights[i], chocolateFlavors[i]);
+            biscuitsSet.add(pack);
+            weight += pack.getWeight();
+        }
+        public int getNumBiscuits() {
+            return biscuitsSet.size();
+        }
+        public int getNumChocolate() {
+            return chocolateSet.size();
+        }
+        public double getWeight() {
+            return weight;
+        }
+        public void showBiscuitsWeights() {
+            for (Biscuits biscuit : biscuitSet) {
+                System.out.println(biscuit.getWeight() + " ");
+            }
+        }
+        public void showChocolateWeights() {
+            for (Chocolate chocolate : chocolateSet) {
+                System.out.println(chocolate.getWeight() + " ");
+            }
+        }
+        public void showChocolateFlavors() {
+            for (Chocolate chocolate : chocolateSet) {
+                System.out.println(chocolate.getFlavor() + " ");
+            }
+        }
+    }
+}
+

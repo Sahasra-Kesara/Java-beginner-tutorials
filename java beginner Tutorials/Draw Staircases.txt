@@ -1,0 +1,22 @@
+__________________________________________________________________________________________________
+Draw Staircases
+--------------------------------------------------------------------------------------------------
+
+import java.util.Scanner;
+public class driver {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of rows for the half pyramid: ");
+        int numSteps = scanner.nextInt();
+        System.out.print("Enter the number of width for the half pyramid: ");
+        int stepWidth = scanner.nextInt();
+        scanner.close();
+
+        for (int i = 0; i < numSteps; i++) {
+            for (int j = 0; j < (i + 1) * stepWidth; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}

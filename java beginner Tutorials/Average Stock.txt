@@ -1,0 +1,50 @@
+---------------------------------------------------------------------------------------------------------------------
+driver.java
+---------------------------------------------------------------------------------------------------------------------
+
+public class driver{
+    public static void main(String[] args) {
+        Stock abcCompany = new Stock();
+        abcCompany.buy(36.6, 2000);
+        abcCompany.buy(39.7, 3000);
+        abcCompany.sell(42.9, 1000);
+        System.out.println(abcCompany.getShares());
+        System.out.println(abcCompany.getPrice());
+        System.out.println(abcCompany.getAveragePrice());
+
+    }
+}
+
+
+---------------------------------------------------------------------------------------------------------------------
+stock.java
+---------------------------------------------------------------------------------------------------------------------
+
+public class Stock {
+    private int shares;
+    private double price;
+    private double capital;
+    public void buy(double p, int s){
+        shares += s;
+        price = p;
+        capital += s * p;
+    }
+    public void sell(double p, int s){
+        shares -= s;
+        price = p;
+        capital -= s * p;
+    }
+    public int getShares (){
+        return shares;
+    }
+    public double getPrice (){
+        return price;
+    }
+    public double getAveragePrice() {
+        return capital / getShares();
+    }
+
+}
+
+
+---------------------------------------------------------------------------------------------------------------------

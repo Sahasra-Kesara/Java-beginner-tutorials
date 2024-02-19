@@ -1,0 +1,48 @@
+-----------------------------------------------------------------------------------------------------------------------------------------
+Driver.java
+-----------------------------------------------------------------------------------------------------------------------------------------
+import java.util.Scanner;
+public class driver {
+    public static void main(String[] args) {
+        System.out.println("Enter your passage");
+        Scanner scan = new Scanner(System.in);
+        String content = scan.nextLine();
+        scan.close();
+        Content myContent = new Content(content);
+        String word = "the";
+        System.out.println(word + ": " + myContent.getCount(word));
+    }
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+Content.java
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+public class Content {
+    private String paragraph;
+    public Content(String p) {
+        paragraph = p;
+    }
+    public int getCount(String word) {
+        String trimmed = paragraph.trim();
+        int count = 0, wl = word.length();
+        int tl = trimmed.length();
+        if (tl < wl) {
+            return 0;
+        }
+        if (tl == wl && trimmed.substring(0, wl).contentEquals(word)){
+            return 1;
+        }
+        if (trimmed.substring(0, wl).equals(word)){
+            count++;
+        }
+        if ((trimmed.substring(tl - wl)).equals(word) && trimmed.charAt(tl - wl -1) == ' ') {
+            count--;
+        }
+        for (int i = wl; i < tl - wl; i++) {
+            if((trimmed.substring(i, i + wl)).equals(word) && trimmed.charAt(i + wl) = ' ' && trimmed.charAt(i - 1) = ' ')
+                count++;
+        }
+    }
+}

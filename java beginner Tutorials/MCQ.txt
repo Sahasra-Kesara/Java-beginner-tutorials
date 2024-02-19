@@ -1,0 +1,92 @@
+-------------------------------------------------------------------------------------------------------------------------------------------------
+								Driver.java
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+public class Driver {
+    public static void main (String[] args) {
+        Game g = new Game();
+        g.start();
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+								Game.java
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Scanner;
+public class Game {
+    private ArrayList<Question> questionSet;
+    public Game() {
+        questionSet = new ArrayList<Question> ();
+
+        String q = "Where does the sun rise?";
+        String[] a = {"East", "South", "West", "North"};
+        questionSet.add(new Question(q, a, "East"));
+
+        q = "Who invented the telephone?";
+        a = new String[] {"thomas", "putin", "mahin", "chair"};
+        questionSet.add(new Question(q, a, "thomas"));
+
+        q = "Where is the Sri Lanka Capital?";
+        a = new String[] {"Colombo", "car", "van", "bus"};
+        questionSet.add(new Question(q, a, "Colombo"));
+        Collections.shuffle(questionSet, new Random());
+
+    }
+    public void start() {
+        Scanner scan = new Scanner(System.in);
+        int numCorrect = 0;
+        for (int question = 0; question < questionSet.size(); question++) {
+            System.out.println(questionSet.get(question).getQuestion());
+            int numChoices = questionSet.get(question).getChoices().size();
+            for (int choice = 0; choice < numChoices; choice++) {
+                System.out.println((choice + 1) + ": " + questionSet.get(question).getChoices().get(choice));
+            }
+            int playerAnswer = scan.nextInt();
+            ArrayList<String> choiceSet = questionSet.get(question).getChoices();
+            String correctAnswer = questionSet.get(question).getAnswer();
+            int correctAnswerIndex = choiceSet.indexOf(correctAnswer);
+            if (playerAnswer == correctAnswerIndex + 1) {
+                numCorrect++;
+            }
+        }
+        scan.close();
+        System.out.println("You got " + numCorrect + " correct answer(s)");
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+								Question.java
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Question {
+    private String question;
+    private ArrayList<String> choices;
+    private String answer;
+    public Question(String question, String[] choices, String answer) {
+        this.question = question;
+        this.choices = new ArrayList<String>();
+        for (int i = 0; i < choices.length; i++) {
+            this.choices.add(choices[i]);
+        }
+        Collections.shuffle(this.choices);
+        this.answer = answer;
+    }
+    public String getQuestion() {
+        return question;
+    }
+    public ArrayList<String> getChoices() {
+        return choices;
+    }
+    public String getAnswer() {
+        return answer;
+    }
+}
+
+
